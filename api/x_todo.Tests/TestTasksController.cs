@@ -16,7 +16,7 @@ namespace x_todo.Tests {
 
         [TestMethod]
         public void GetTasks_ShouldReturnAllTasks() {
-            var context = new TestXTodoContext();
+            var context = GetContextWithCategory(1);
             context.Tasks.Add(new Task(1, "Get a job"));
             context.Tasks.Add(new Task(1, "Move across the country"));
             context.Tasks.Add(new Task(1, "Visit Yosemite"));
@@ -29,7 +29,7 @@ namespace x_todo.Tests {
 
         [TestMethod]
         public async System.Threading.Tasks.Task PostTask_ShouldReturnSameTask() {
-            var controller = new TasksController(new TestXTodoContext());
+            var controller = new TasksController(GetContextWithCategory(1));
             var task = new Task(1, "Go kayaking", DateTime.Now) { Id = 1 };
 
 
@@ -45,8 +45,8 @@ namespace x_todo.Tests {
 
         [TestMethod]
         public async System.Threading.Tasks.Task PostTask_ShouldFailWhenTitleIsNull() {
-            var controller = new TasksController(new TestXTodoContext());
-            var task = new Task();
+            var controller = new TasksController(GetContextWithCategory(1));
+            var task = new Task() { CategoryId = 1 };
 
             RunValidations(controller, task);
             var result = await controller.PostTask(task);
@@ -56,7 +56,7 @@ namespace x_todo.Tests {
 
         [TestMethod]
         public async System.Threading.Tasks.Task PostTask_ShouldFailWhenTitleIsEmptyOrWhitespace() {
-            var controller = new TasksController(new TestXTodoContext());
+            var controller = new TasksController(GetContextWithCategory(1));
             var task = new Task(1, " ");
 
             RunValidations(controller, task);
@@ -66,8 +66,18 @@ namespace x_todo.Tests {
         }
 
         [TestMethod]
+        public async System.Threading.Tasks.Task PostTask_ShouldFailWhenBadCategoryIdProvided() {
+            var context = GetContextWithCategory(1);
+            var controller = new TasksController(context);
+            var task = new Task(2, "Get a job");
+
+            var result = await controller.PostTask(task);
+            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+        }
+
+        [TestMethod]
         public async System.Threading.Tasks.Task PutTask_ShouldReturnStatusCode() {
-            var controller = new TasksController(new TestXTodoContext());
+            var controller = new TasksController(GetContextWithCategory(1));
             var task = new Task(1, "Go kayaking") { Id = 1 };
 
             RunValidations(controller, task);
@@ -80,7 +90,7 @@ namespace x_todo.Tests {
 
         [TestMethod]
         public async System.Threading.Tasks.Task PutTask_ShouldFailForNonMatchingIds() {
-            var controller = new TasksController(new TestXTodoContext());
+            var controller = new TasksController(GetContextWithCategory(1));
             var task = new Task(1, "Go kayaking") { Id = 1 };
 
             RunValidations(controller, task);
@@ -91,8 +101,8 @@ namespace x_todo.Tests {
 
         [TestMethod]
         public async System.Threading.Tasks.Task PutTask_ShouldFailWhenTitleIsNull() {
-            var controller = new TasksController(new TestXTodoContext());
-            var task = new Task() { Id = 1 };
+            var controller = new TasksController(GetContextWithCategory(1));
+            var task = new Task() { Id = 1, CategoryId = 1 };
 
             RunValidations(controller, task);
             var result = await controller.PutTask(task.Id, task);
@@ -102,7 +112,7 @@ namespace x_todo.Tests {
 
         [TestMethod]
         public async System.Threading.Tasks.Task PutTask_ShouldFailWhenTitleIsEmptyOrWhitespace() {
-            var controller = new TasksController(new TestXTodoContext());
+            var controller = new TasksController(GetContextWithCategory(1));
             var task = new Task(1, " ") { Id = 1 };
 
             RunValidations(controller, task);
@@ -112,8 +122,18 @@ namespace x_todo.Tests {
         }
 
         [TestMethod]
+        public async System.Threading.Tasks.Task PutTask_ShouldFailWhenBadCategoryIdProvided() {
+            var context = GetContextWithCategory(1);
+            var controller = new TasksController(context);
+            var task = new Task(2, "Get a job") { Id = 1 };
+
+            var result = await controller.PutTask(task.Id, task);
+            Assert.IsInstanceOfType(result, typeof(BadRequestErrorMessageResult));
+        }
+
+        [TestMethod]
         public async System.Threading.Tasks.Task DeleteTask_ShouldReturnOk() {
-            var context = new TestXTodoContext();
+            var context = GetContextWithCategory(1);
             var controller = new TasksController(context);
             var task = new Task(1, "Go kayaking") { Id = 1 };
             context.Tasks.Add(task);
@@ -121,6 +141,12 @@ namespace x_todo.Tests {
             var result = await controller.DeleteTask(task.Id) as OkNegotiatedContentResult<Task>;
             Assert.IsNotNull(result);
             Assert.AreEqual(task.Id, result.Content.Id);
+        }
+
+        private TestXTodoContext GetContextWithCategory(int categoryId) {
+            var context = new TestXTodoContext();
+            context.Categories.Add(new Category("Work") { Id = categoryId });
+            return context;
         }
 
         private void RunValidations(TasksController controller, Task task) {

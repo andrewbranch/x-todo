@@ -14,6 +14,7 @@ namespace x_todo.Controllers {
     public class TasksController : ApiController {
 
         private IXTodoContext db = new XTodoContext();
+        private const string BAD_CATEGORY_ID_MESSAGE = "The task's CategoryId is invalid";
 
         public TasksController() { }
 
@@ -32,6 +33,10 @@ namespace x_todo.Controllers {
                 return BadRequest(ModelState);
             }
 
+            if (!await HasValidCategoryId(task)) {
+                return BadRequest(BAD_CATEGORY_ID_MESSAGE);
+            }
+
             db.Tasks.Add(task);
             await db.SaveChangesAsync();
             return CreatedAtRoute("DefaultApi", new { id = task.Id }, task);
@@ -46,6 +51,10 @@ namespace x_todo.Controllers {
 
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
+            }
+
+            if (!await HasValidCategoryId(task)) {
+                return BadRequest(BAD_CATEGORY_ID_MESSAGE);
             }
 
             db.MarkAsModified(task);
@@ -81,6 +90,10 @@ namespace x_todo.Controllers {
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        private async System.Threading.Tasks.Task<bool> HasValidCategoryId(Task task) {
+            return await db.Categories.FindAsync(task.CategoryId) != null;
         }
 
     }

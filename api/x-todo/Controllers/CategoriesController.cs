@@ -45,7 +45,7 @@ namespace x_todo.Controllers {
             }
 
             if (id != category.Id) {
-                return BadRequest("Provided Id does not match task Id");
+                return BadRequest("Provided Id does not match category Id");
             }
 
             db.MarkAsModified(category);
