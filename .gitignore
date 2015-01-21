@@ -24,9 +24,12 @@ frontend/testem.log
 
 ## ASP.NET MVC
 
+# Database
+api/x-todo/App_Data
+
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
-[Bb]in/
-[Oo]bj/
+api/x-todo/[Bb]in/
+api/x-todo/[Oo]bj/
 
 # mstest test results
 TestResults
@@ -40,9 +43,9 @@ TestResults
 *.sln.docstates
 
 # Build results
-api/[Dd]ebug/
-api/[Rr]elease/
-api/x64/
+api/x-todo/[Dd]ebug/
+api/x-todo/[Rr]elease/
+api/x-todo/x64/
 *_i.c
 *_p.c
 *.ilk
@@ -61,10 +64,10 @@ api/x64/
 *.log
 *.vspscc
 *.vssscc
-api/.builds
+api/x-todo/.builds
 
 # Visual C++ cache files
-api/ipch/
+api/x-todo/ipch/
 *.aps
 *.ncb
 *.opensdf
@@ -79,27 +82,27 @@ api/ipch/
 *.gpState
 
 # ReSharper is a .NET coding add-in
-api/_ReSharper*
+api/x-todo/_ReSharper*
 
 # NCrunch
 *.ncrunch*
 .*crunch*.local.xml
 
 # Installshield output folder
-api/[Ee]xpress
+api/x-todo/[Ee]xpress
 
 # DocProject is a documentation generator add-in
-api/DocProject/buildhelp/
-api/DocProject/Help/*.HxT
-api/DocProject/Help/*.HxC
-api/DocProject/Help/*.hhc
-api/DocProject/Help/*.hhk
-api/DocProject/Help/*.hhp
-api/DocProject/Help/Html2
-api/DocProject/Help/html
+api/x-todo/DocProject/buildhelp/
+api/x-todo/DocProject/Help/*.HxT
+api/x-todo/DocProject/Help/*.HxC
+api/x-todo/DocProject/Help/*.hhc
+api/x-todo/DocProject/Help/*.hhk
+api/x-todo/DocProject/Help/*.hhp
+api/x-todo/DocProject/Help/Html2
+api/x-todo/DocProject/Help/html
 
 # Click-Once directory
-api/publish
+api/x-todo/publish
 
 # Publish Web Output
 *.Publish.xml
@@ -108,27 +111,27 @@ api/publish
 api/packages
 
 # Windows Azure Build Output
-api/csx
+api/x-todo/csx
 *.build.csdef
 
 # Windows Store app package directory
-api/AppPackages/
+api/x-todo/AppPackages/
 
 # Others
-api/[Bb]in
-api/[Oo]bj
-api/sql
-api/TestResults
-api/[Tt]est[Rr]esult*
+api/x-todo/[Bb]in
+api/x-todo/[Oo]bj
+api/x-todo/sql
+api/x-todo/TestResults
+api/x-todo/[Tt]est[Rr]esult*
 *.Cache
-api/ClientBin
-api/[Ss]tyle[Cc]op.*
-api/~$*
+api/x-todo/ClientBin
+api/x-todo/[Ss]tyle[Cc]op.*
+api/x-todo/~$*
 *.dbmdl
-api/Generated_Code #added for RIA/Silverlight projects
+api/x-todo/Generated_Code #added for RIA/Silverlight projects
 
 # Backup & report files from converting an old project file to a newer
 # Visual Studio version. Backup files are not needed, because we have git ;-)
-api/_UpgradeReport_Files/
-api/Backup*/
-api/UpgradeLog*.XML
+api/x-todo/_UpgradeReport_Files/
+api/x-todo/Backup*/
+api/x-todo/UpgradeLog*.XML
