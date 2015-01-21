@@ -14,6 +14,13 @@ module.exports = function (grunt) {
       }
     },
 
+    shell: {
+      apiHost: 'http://localhost:50993',
+      emberserver: {
+        command: 'cd frontend && ember server --proxy <%= apiHost %>'
+      }
+    },
+
     iisexpress: {
       server: {
         options: {
@@ -22,36 +29,50 @@ module.exports = function (grunt) {
           verbose: true
         }
       }
+    },
+
+    concurrent: {
+      server: ['shell:emberserver', 'iisexpress'],
+      options: {
+        logConcurrentOutput: true
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-msbuild');
-  // grunt.loadNpmTasks('grunt-iisexpress');
+  grunt.loadNpmTasks('grunt-concurrent');
+  grunt.loadNpmTasks('grunt-iisexpress');
+  grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('build', ['msbuild']);
-  // grunt.registerTask('server', ['iisexpress']);
 
-  grunt.registerTask('iis', function () {
-    grunt.util.spawn({
-      cmd: 'C:\\Program Files\\IIS Express\\iisexpress.exe',
-      args: ['/site:x_todo'],
-    }).stdout.on('data', function (data) {
-      var str = data.toString(),
-          url = (str.match(/"http(s?):\/\/[a-zA-Z-]+?:[0-9]{1,9}.*?"/) || [])[0];
-      grunt.log.write(str);
-      if (url) {
-        grunt.event.emit('iis.ready', url.slice(1, url.length - 1));
-      }
-    });
 
-    grunt.event.on('iis.ready', function (url) {
-      grunt.log.ok('IIS Express URL: ' + url);
-    });
-
-    this.async();
-  });
+  // grunt.registerTask('emberserver', function () {
+  //
+  //   var done = this.async();
+  //
+  //   var spawn = grunt.util.spawn({
+  //     cmd: 'cd',
+  //     args: ['--proxy ' + this.options().apiHost]
+  //   });
+  //
+  //   spawn.stdout.on('data', function (data) {
+  //     grunt.log.write(data.toString());
+  //   });
+  //
+  //   spawn.stderr.on('data', function (data) {
+  //     grunt.fail.warn(data);
+  //   });
+  //
+  //   process.on('exit', done);
+  //   process.on('SIGINT', done);
+  //   process.on('SIGHUP', done);
+  //   process.on('SIGBREAK', done);
+  //
+  // });
 
   // Default task(s).
+  grunt.registerTask('server', ['concurrent:server']);
   grunt.registerTask('default', ['build', 'server']);
 
 };
