@@ -6,7 +6,7 @@ using System.Web;
 
 namespace x_todo.Models {
 
-    public class Task {
+    public class Task : IEntity {
 
         public Task(string title, DateTime dueDate) {
             this.Title = title;
@@ -20,7 +20,7 @@ namespace x_todo.Models {
         public Task() { }
 
         public int Id { get; set; }
-        [Required]
+        [Required, MinLength(1)]
         public string Title { get; set; }
         public DateTime? DueDate { get; set; }
     }

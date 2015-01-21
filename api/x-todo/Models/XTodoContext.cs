@@ -6,9 +6,13 @@ using System.Web;
 
 namespace x_todo.Models {
 
-    public class XTodoContext : DbContext {
+    public class XTodoContext : DbContext, IXTodoContext {
 
         public DbSet<Task> Tasks { get; set; }
+
+        public void MarkAsModified(Task task) {
+            this.Entry(task).State = EntityState.Modified;
+        }
 
     }
 }

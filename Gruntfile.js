@@ -17,7 +17,13 @@ module.exports = function (grunt) {
     shell: {
       apiHost: 'http://localhost:50993',
       emberserver: {
-        command: 'cd frontend && ember server --proxy <%= apiHost %>'
+        command: 'ember server --proxy <%= apiHost %>',
+        options: {
+          execOptions: {
+            cwd: 'frontend',
+            killSignal: 'SIGINT'
+          }
+        }
       }
     },
 

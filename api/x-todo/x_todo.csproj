@@ -165,6 +165,8 @@
       <DependentUpon>201501202103235_Make-DueDate-Nullable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\IEntity.cs" />
+    <Compile Include="Models\IXTodoContext.cs" />
     <Compile Include="Models\Task.cs" />
     <Compile Include="Models\XTodoContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

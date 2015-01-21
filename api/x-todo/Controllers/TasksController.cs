@@ -13,7 +13,13 @@ namespace x_todo.Controllers {
 
     public class TasksController : ApiController {
 
-        private XTodoContext db = new XTodoContext();
+        private IXTodoContext db = new XTodoContext();
+
+        public TasksController() { }
+
+        public TasksController(IXTodoContext context) {
+            db = context;
+        }
 
         // GET: api/Tasks
         public IQueryable<Task> GetTasks() {
@@ -33,12 +39,16 @@ namespace x_todo.Controllers {
 
         // PUT: api/Tasks
         public async System.Threading.Tasks.Task<IHttpActionResult> PutTask(int id, Task task) {
-            task.Id = id;
+
+            if (id != task.Id) {
+                return BadRequest("Provided Id does not match task Id");
+            }
+
             if (!ModelState.IsValid) {
                 return BadRequest(ModelState);
             }
 
-            db.Entry(task).State = EntityState.Modified;
+            db.MarkAsModified(task);
             try {
                 await db.SaveChangesAsync();
             } catch (DbUpdateConcurrencyException e) {
@@ -53,7 +63,6 @@ namespace x_todo.Controllers {
         }
 
         // DELETE: api/Tasks
-        [HttpDelete]
         public async System.Threading.Tasks.Task<IHttpActionResult> DeleteTask(int id) {
             var task = await db.Tasks.FindAsync(id);
             if (task == null) {
