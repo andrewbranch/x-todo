@@ -10,9 +10,11 @@ namespace x_todo.Models {
     public interface IXTodoContext : IDisposable {
 
         DbSet<Task> Tasks { get; set; }
+        DbSet<Category> Categories { get; set; }
+
         int SaveChanges();
         System.Threading.Tasks.Task<int> SaveChangesAsync();
-        void MarkAsModified(Task task);
+        void MarkAsModified(IEntity e);
 
     }
 }

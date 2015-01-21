@@ -51,11 +51,11 @@ namespace x_todo.Controllers {
             db.MarkAsModified(task);
             try {
                 await db.SaveChangesAsync();
-            } catch (DbUpdateConcurrencyException e) {
+            } catch (DbUpdateConcurrencyException) {
                 if (db.Tasks.Count(t => t.Id == id) > 0) {
                     return NotFound();
                 } else {
-                    throw e;
+                    throw;
                 }
             }
 
@@ -73,6 +73,14 @@ namespace x_todo.Controllers {
             await db.SaveChangesAsync();
 
             return Ok(task);
+        }
+
+
+        protected override void Dispose(bool disposing) {
+            if (disposing) {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

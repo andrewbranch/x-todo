@@ -17,9 +17,9 @@ namespace x_todo.Tests {
         [TestMethod]
         public void GetTasks_ShouldReturnAllTasks() {
             var context = new TestXTodoContext();
-            context.Tasks.Add(new Task("Get a job"));
-            context.Tasks.Add(new Task("Move across the country"));
-            context.Tasks.Add(new Task("Visit Yosemite"));
+            context.Tasks.Add(new Task(1, "Get a job"));
+            context.Tasks.Add(new Task(1, "Move across the country"));
+            context.Tasks.Add(new Task(1, "Visit Yosemite"));
 
             var controller = new TasksController(context);
             var result = controller.GetTasks() as TestDbSet<Task>;
@@ -30,7 +30,7 @@ namespace x_todo.Tests {
         [TestMethod]
         public async System.Threading.Tasks.Task PostTask_ShouldReturnSameTask() {
             var controller = new TasksController(new TestXTodoContext());
-            var task = new Task("Go kayaking", DateTime.Now) { Id = 1 };
+            var task = new Task(1, "Go kayaking", DateTime.Now) { Id = 1 };
 
 
             RunValidations(controller, task);
@@ -57,7 +57,7 @@ namespace x_todo.Tests {
         [TestMethod]
         public async System.Threading.Tasks.Task PostTask_ShouldFailWhenTitleIsEmptyOrWhitespace() {
             var controller = new TasksController(new TestXTodoContext());
-            var task = new Task(" ");
+            var task = new Task(1, " ");
 
             RunValidations(controller, task);
             var result = await controller.PostTask(task);
@@ -68,7 +68,7 @@ namespace x_todo.Tests {
         [TestMethod]
         public async System.Threading.Tasks.Task PutTask_ShouldReturnStatusCode() {
             var controller = new TasksController(new TestXTodoContext());
-            var task = new Task("Go kayaking") { Id = 1 };
+            var task = new Task(1, "Go kayaking") { Id = 1 };
 
             RunValidations(controller, task);
             var result = await controller.PutTask(task.Id, task) as StatusCodeResult;
@@ -81,7 +81,7 @@ namespace x_todo.Tests {
         [TestMethod]
         public async System.Threading.Tasks.Task PutTask_ShouldFailForNonMatchingIds() {
             var controller = new TasksController(new TestXTodoContext());
-            var task = new Task("Go kayaking") { Id = 1 };
+            var task = new Task(1, "Go kayaking") { Id = 1 };
 
             RunValidations(controller, task);
             var result = await controller.PutTask(2, task);
@@ -103,7 +103,7 @@ namespace x_todo.Tests {
         [TestMethod]
         public async System.Threading.Tasks.Task PutTask_ShouldFailWhenTitleIsEmptyOrWhitespace() {
             var controller = new TasksController(new TestXTodoContext());
-            var task = new Task(" ") { Id = 1 };
+            var task = new Task(1, " ") { Id = 1 };
 
             RunValidations(controller, task);
             var result = await controller.PutTask(task.Id, task);
@@ -115,7 +115,7 @@ namespace x_todo.Tests {
         public async System.Threading.Tasks.Task DeleteTask_ShouldReturnOk() {
             var context = new TestXTodoContext();
             var controller = new TasksController(context);
-            var task = new Task("Go kayaking") { Id = 1 };
+            var task = new Task(1, "Go kayaking") { Id = 1 };
             context.Tasks.Add(task);
 
             var result = await controller.DeleteTask(task.Id) as OkNegotiatedContentResult<Task>;

@@ -152,6 +152,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -164,7 +165,12 @@
     <Compile Include="Migrations\201501202103235_Make-DueDate-Nullable.Designer.cs">
       <DependentUpon>201501202103235_Make-DueDate-Nullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501211837186_Add-Category.cs" />
+    <Compile Include="Migrations\201501211837186_Add-Category.Designer.cs">
+      <DependentUpon>201501211837186_Add-Category.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\IXTodoContext.cs" />
     <Compile Include="Models\Task.cs" />
@@ -197,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501202103235_Make-DueDate-Nullable.resx">
       <DependentUpon>201501202103235_Make-DueDate-Nullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501211837186_Add-Category.resx">
+      <DependentUpon>201501211837186_Add-Category.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

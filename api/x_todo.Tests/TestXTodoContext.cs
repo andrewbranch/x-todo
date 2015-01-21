@@ -11,9 +11,11 @@ namespace x_todo.Tests {
 
         public TestXTodoContext() {
             this.Tasks = new TestDbSet<Task>();
+            this.Categories = new TestDbSet<Category>();
         }
 
         public DbSet<Task> Tasks { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public int SaveChanges() {
             return 0;
@@ -23,7 +25,7 @@ namespace x_todo.Tests {
             return System.Threading.Tasks.Task.FromResult(0);
         }
 
-        public void MarkAsModified(Task task) { }
+        public void MarkAsModified(IEntity e) { }
         public void Dispose() { }
 
     }

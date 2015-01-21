@@ -8,10 +8,15 @@ namespace x_todo.Models {
 
     public class XTodoContext : DbContext, IXTodoContext {
 
-        public DbSet<Task> Tasks { get; set; }
+        public XTodoContext() : base("name=XTodoContext") {
+            this.Configuration.ProxyCreationEnabled = false;
+        }
 
-        public void MarkAsModified(Task task) {
-            this.Entry(task).State = EntityState.Modified;
+        public DbSet<Task> Tasks { get; set; }
+        public DbSet<Category> Categories { get; set; }
+
+        public void MarkAsModified(IEntity e) {
+            this.Entry(e).State = EntityState.Modified;
         }
 
     }
