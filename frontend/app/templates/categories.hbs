@@ -1,11 +1,8 @@
-<ul>
-  {{#each}}
-    <li>
-      <ul>
-        {{#each tasks}}
-          <li>{{title}}</li>
-        {{/each}}
-      </ul>
-    </li>
-  {{/each}}
-</ul>
+{{#each}}
+  <h3>{{name}}
+  <ul>
+    {{#each tasks}}
+      <li>{{title}}</li>
+    {{/each}}
+  </ul>
+{{/each}}

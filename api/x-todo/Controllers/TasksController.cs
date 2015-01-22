@@ -6,11 +6,13 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using x_todo.Models;
 
 namespace x_todo.Controllers {
 
+    [EnableCors("*", "*", "*")]
     public class TasksController : ApiController {
 
         private IXTodoContext db = new XTodoContext();

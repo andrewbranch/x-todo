@@ -8,14 +8,18 @@ using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using x_todo.Models;
 
 namespace x_todo.Controllers {
 
+    [EnableCors("*", "*", "*")]
     public class CategoriesController : ApiController {
 
         private IXTodoContext db = new XTodoContext();
+
+        public CategoriesController() { }
 
         public CategoriesController(IXTodoContext context) {
             db = context;

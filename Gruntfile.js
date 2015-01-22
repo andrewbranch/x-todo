@@ -38,7 +38,7 @@ module.exports = function (grunt) {
     },
 
     concurrent: {
-      server: ['shell:emberserver', 'iisexpress'],
+      server: ['iisexpress', 'shell:emberserver'],
       options: {
         logConcurrentOutput: true
       }
@@ -51,33 +51,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
 
   grunt.registerTask('build', ['msbuild']);
-
-
-  // grunt.registerTask('emberserver', function () {
-  //
-  //   var done = this.async();
-  //
-  //   var spawn = grunt.util.spawn({
-  //     cmd: 'cd',
-  //     args: ['--proxy ' + this.options().apiHost]
-  //   });
-  //
-  //   spawn.stdout.on('data', function (data) {
-  //     grunt.log.write(data.toString());
-  //   });
-  //
-  //   spawn.stderr.on('data', function (data) {
-  //     grunt.fail.warn(data);
-  //   });
-  //
-  //   process.on('exit', done);
-  //   process.on('SIGINT', done);
-  //   process.on('SIGHUP', done);
-  //   process.on('SIGBREAK', done);
-  //
-  // });
-
-  // Default task(s).
   grunt.registerTask('server', ['concurrent:server']);
   grunt.registerTask('default', ['build', 'server']);
 
