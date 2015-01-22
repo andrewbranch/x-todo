@@ -202,6 +202,10 @@
     <Compile Include="Migrations\201501211837186_Add-Category.Designer.cs">
       <DependentUpon>201501211837186_Add-Category.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501221615339_Flesh-Out-Models.cs" />
+    <Compile Include="Migrations\201501221615339_Flesh-Out-Models.Designer.cs">
+      <DependentUpon>201501221615339_Flesh-Out-Models.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IEntity.cs" />
@@ -240,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501211837186_Add-Category.resx">
       <DependentUpon>201501211837186_Add-Category.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501221615339_Flesh-Out-Models.resx">
+      <DependentUpon>201501221615339_Flesh-Out-Models.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

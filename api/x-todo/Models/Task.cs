@@ -24,6 +24,8 @@ namespace x_todo.Models {
         [Required, MinLength(1)]
         public string Title { get; set; }
         public DateTime? DueDate { get; set; }
+        public bool Completed { get; set; }
+        public int Index { get; set; }
         public int CategoryId { get; set; }
 
         [ForeignKey("CategoryId"), JsonIgnore]
