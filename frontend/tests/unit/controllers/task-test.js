@@ -3,7 +3,7 @@ import {
   test
 } from 'ember-qunit';
 
-moduleFor('controller:tasks', 'TasksController', {
+moduleFor('controller:task', 'TaskController', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

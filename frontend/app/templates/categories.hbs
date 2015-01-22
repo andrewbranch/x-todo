@@ -1,8 +1,13 @@
+<button type="button" {{action "addCategory"}}>New Category</button>
+
 {{#each}}
-  <h3>{{name}}
+  <h3>{{click-to-edit-text value=name}} <button type="button" {{action "addTask"}}>+</button></h3>
   <ul>
-    {{#each tasks}}
-      <li>{{title}}</li>
+    {{#each tasks itemController="task"}}
+      <li>
+        {{input type="checkbox" checked=completed}}
+        {{click-to-edit-text value=title delete="delete" editing=editing}}
+      </li>
     {{/each}}
   </ul>
 {{/each}}

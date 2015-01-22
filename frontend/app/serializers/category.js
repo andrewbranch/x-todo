@@ -10,7 +10,6 @@ export default DS.RESTSerializer.extend({
         c.tasks = c.tasks.map(function (t) { return t.id; });
       });
 
-      console.log({ categories: payload, tasks: tasks });
       return { categories: payload, tasks: tasks };
     }
     return { category: payload };
