@@ -17,6 +17,8 @@ namespace x_todo.Controllers {
 
         private IXTodoContext db = new XTodoContext();
 
+        public CategoriesController() { }
+
         public CategoriesController(IXTodoContext context) {
             db = context;
         }
