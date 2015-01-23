@@ -24,7 +24,7 @@ export default Ember.View.extend({
   },
 
   didMoveTaskIn: function (event, ui) {
-    this.get('controller').send('updateTaskCategory', ui.item.data('id'));
+    this.get('controller').send('updateTaskCategory', ui.item.find('li').data('id'));
   }
 
 });

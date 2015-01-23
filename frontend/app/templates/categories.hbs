@@ -4,7 +4,7 @@
   {{#view "category"}}
     <div class="category-header">
       <h3 class="ui header">{{click-to-edit-text value=category.name editing=category.editing}}</h3>
-      <a href="#" class="add" {{action "addTask"}}>+</a>
+      <a href="#" {{bind-attr class=":add category.editing:hide"}} {{action "addTask"}}>+</a>
     </div>
     <ul class="category">
       {{#each task in category.sortedTasks itemController="task"}}
