@@ -1,4 +1,3 @@
-import Ember from 'ember';
 import EditableObjectController from './editable-object';
 
 export default EditableObjectController.extend({

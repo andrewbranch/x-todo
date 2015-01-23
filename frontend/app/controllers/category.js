@@ -30,16 +30,25 @@ export default EditableObjectController.extend({
     },
 
     updateTaskIndexes: function (indexHash) {
+      var updateTask = function (task) {
+        if (task.get('index') !== indexHash[this]) {
+          task.set('index', indexHash[this]);
+          task.save();
+        }
+      };
+
       this.beginPropertyChanges();
       for (var taskId in indexHash) {
-        this.store.find('task', parseInt(taskId)).then(function (t) {
-          if (t.get('index') !== indexHash[this]) {
-            t.set('index', indexHash[this]);
-            t.save();
-          }
-        }.bind(taskId));
+        this.store.find('task', parseInt(taskId)).then(updateTask.bind(taskId));
       }
       this.endPropertyChanges();
+    },
+
+    updateTaskCategory: function (taskId) {
+      this.store.find('task', taskId).then(function (t) {
+        t.set('category', this.get('model'));
+        t.save();
+      }.bind(this));
     }
   }
 
