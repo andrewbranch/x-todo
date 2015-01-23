@@ -1,0 +1,6 @@
+<li data-id="{{unbound task.id}}">
+  <div class="ui checkbox">
+    {{input type="checkbox" checked=task.completed}}
+  </div>
+  {{click-to-edit-text value=task.title editing=task.editing}}
+</li>

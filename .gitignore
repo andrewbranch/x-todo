@@ -21,6 +21,7 @@ frontend/coverage/*
 frontend/libpeerconnection.log
 frontend/npm-debug.log
 frontend/testem.log
+frontend/clean_ember-cli.js
 
 ## ASP.NET MVC
 

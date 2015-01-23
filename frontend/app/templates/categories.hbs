@@ -1,14 +1,14 @@
-<button type="button" {{action "addCategory"}}>New Category</button>
+<!-- <button class="ui blue button" type="button" {{action "addCategory"}}>New Category</button> -->
 
 {{#each category in model itemController="category"}}
   {{#view "category"}}
-    <h3>{{click-to-edit-text value=category.name editing=category.editing}} <button type="button" {{action "addTask"}}>+</button></h3>
+    <div class="category-header">
+      <h3 class="ui header">{{click-to-edit-text value=category.name editing=category.editing}}</h3>
+      <a href="#" class="add" {{action "addTask"}}>+</a>
+    </div>
     <ul class="category">
       {{#each task in category.sortedTasks itemController="task"}}
-        <li data-id="{{unbound task.id}}">
-          {{input type="checkbox" checked=task.completed}}
-          {{click-to-edit-text value=task.title editing=task.editing}}
-        </li>
+        {{view "task"}}
       {{/each}}
     </ul>
   {{/view}}
