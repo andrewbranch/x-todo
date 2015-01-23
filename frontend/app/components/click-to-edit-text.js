@@ -1,8 +1,6 @@
 import Ember from 'ember';
 
-var BACKSPACE = 8,
-    RETURN = 13,
-    DELETE = 46;
+var RETURN = 13;
 
 export default Ember.Component.extend({
 
@@ -18,10 +16,6 @@ export default Ember.Component.extend({
         self.sendAction('return');
         self.set('editing', false);
         return;
-      }
-
-      if (event.which === DELETE) {
-        self.sendAction('delete');
       }
     });
   },

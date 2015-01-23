@@ -2,15 +2,12 @@ import Ember from 'ember';
 
 export default Ember.ArrayController.extend({
 
-  itemController: 'category',
-
   actions: {
     addCategory: function () {
+      // Create on client side, persist after user names it
       var category = this.store.createRecord('category', {
-        name: 'New Category',
-        index: this.get('length')
+        index: this.get('length') // Add to the end
       });
-      category.save();
     }
   }
 
