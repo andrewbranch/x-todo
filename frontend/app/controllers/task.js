@@ -9,7 +9,7 @@ export default EditableObjectController.extend({
 
   saveAutomatically: function () {
     this._super();
-  }.observes('title'),
+  }.observes('title', 'completed'),
 
   actions: {
     delete: function () {

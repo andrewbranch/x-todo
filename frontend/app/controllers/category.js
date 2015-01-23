@@ -7,6 +7,13 @@ export default EditableObjectController.extend({
     return (this.get('name') || '').trim().length > 0;
   }.property('name'),
 
+  sortedTasks: function () {
+    return Ember.ArrayProxy.createWithMixins(Ember.SortableMixin, {
+      sortProperties: ['index'],
+      content: this.get('tasks')
+    });
+  }.property('tasks'),
+
   actions: {
 
     addTask: function () {
@@ -20,6 +27,19 @@ export default EditableObjectController.extend({
       if (!this.get('tasks').get('length') || confirm('All tasks in this category will be deleted.')) {
         this.get('model').destroyRecord();
       }
+    },
+
+    updateTaskIndexes: function (indexHash) {
+      this.beginPropertyChanges();
+      for (var taskId in indexHash) {
+        this.store.find('task', parseInt(taskId)).then(function (t) {
+          if (t.get('index') !== indexHash[this]) {
+            t.set('index', indexHash[this]);
+            t.save();
+          }
+        }.bind(taskId));
+      }
+      this.endPropertyChanges();
     }
   }
 
