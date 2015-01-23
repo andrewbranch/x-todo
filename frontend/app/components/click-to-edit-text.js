@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
-var RETURN = 13;
+var RETURN = 13,
+    ESCAPE = 27;
 
 export default Ember.Component.extend({
 
@@ -18,6 +19,10 @@ export default Ember.Component.extend({
         self.sendAction('return');
         self.set('editing', false);
         return;
+      }
+
+      if (event.which === ESCAPE) {
+        self.set('editing', false);
       }
     });
   },
