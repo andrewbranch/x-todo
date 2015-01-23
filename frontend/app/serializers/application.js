@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.RESTSerializer.extend({
@@ -9,7 +10,7 @@ export default DS.RESTSerializer.extend({
     return Ember.merge(hash, this.serialize(record, options));
   },
 
-  keyForRelationship: function (key, relationship) {
+  keyForRelationship: function (key) {
     return key + 'Id';
   }
 });

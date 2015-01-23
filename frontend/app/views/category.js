@@ -13,7 +13,7 @@ export default Ember.View.extend({
     });
   },
 
-  didReorderTasks: function (event, ui) {
+  didReorderTasks: function () {
     var indexHash = { };
     this.$('li').each(function (i, item) {
       indexHash[$(item).data('id').toString()] = i;
