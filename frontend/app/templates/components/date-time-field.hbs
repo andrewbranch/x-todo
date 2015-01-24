@@ -1,0 +1,3 @@
+{{date-field class="date" date=date}}
+{{replacing-field class="hour" value=formattedHour pattern="[0-9]*" validationPattern="^[1-9]$|^1[0-2]$"}}:{{replacing-field class="minute" value=minute pattern="[0-9]*" validationPattern="^[0-5]$|^[0-5][0-9]$"}}
+{{replacing-field class="meridiem" value=meridiem autocompleteOptions="AM,PM"}}

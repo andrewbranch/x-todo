@@ -21,6 +21,10 @@ var app = new EmberApp();
 app.import('bower_components/jquery-ui/jquery-ui.min.js');
 app.import('bower_components/semantic-ui/dist/semantic.min.js');
 app.import('bower_components/semantic-ui/dist/semantic.min.css');
+app.import('bower_components/tinycolor/tinycolor.js');
+app.import('bower_components/pikaday/css/pikaday.css');
+app.import('bower_components/moment/min/moment.min.js');
+app.import('bower_components/pikaday/pikaday.js');
 
 var fontTree = pickFiles('bower_components/semantic-ui/dist/themes/default/assets/fonts', {
   srcDir: '/',

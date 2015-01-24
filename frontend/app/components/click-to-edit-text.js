@@ -6,6 +6,7 @@ var RETURN = 13,
 export default Ember.Component.extend({
 
   classNames: ['click-to-edit-text'],
+  attributeBindings: ['style'],
 
   didInsertElement: function () {
     var self = this;

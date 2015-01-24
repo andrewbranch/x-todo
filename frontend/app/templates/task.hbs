@@ -1,6 +1,16 @@
-<li data-id="{{unbound task.id}}">
-  <div class="ui checkbox">
-    {{input type="checkbox" checked=task.completed}}
-  </div>
+<div class="ui checkbox" {{bind-attr style="category.colorData.colorStyle"}}>
+  {{input type="checkbox" checked=task.completed}}
+</div>
+<div>
   {{click-to-edit-text value=task.title editing=task.editing}}
-</li>
+  <div class="due-date">
+    {{#if task.dueDate}}
+      {{#if task.editingDueDate}}
+        {{date-time-field date=task.dueDate done="endEditingDueDate"}}
+      {{else}}
+        <a href="#" {{action "editDueDate"}}>{{task.formattedDueDate}}</a>
+      {{/if}}
+    {{else}}
+      <a href="#" {{action "addDueDate"}}>Add due date</a>
+    {{/if}}
+</div>

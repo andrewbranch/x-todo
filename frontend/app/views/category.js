@@ -5,7 +5,7 @@ import Ember from 'ember';
 export default Ember.View.extend({
 
   didInsertElement: function () {
-    this.$('ul').sortable({
+    this.$('ul.category').sortable({
       axis: 'y',
       connectWith: '.category',
       update: this.get('didReorderTasks').bind(this),
@@ -15,7 +15,7 @@ export default Ember.View.extend({
 
   didReorderTasks: function () {
     var indexHash = { };
-    this.$('li').each(function (i, item) {
+    this.$('ul.category > li').each(function (i, item) {
       indexHash[$(item).data('id').toString()] = i;
     });
 
@@ -24,7 +24,7 @@ export default Ember.View.extend({
   },
 
   didMoveTaskIn: function (event, ui) {
-    this.get('controller').send('updateTaskCategory', ui.item.find('li').data('id'));
+    this.get('controller').send('updateTaskCategory', ui.item.data('id'));
   }
 
 });

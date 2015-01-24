@@ -2,14 +2,14 @@
 
 {{#each category in model itemController="category"}}
   {{#view "category"}}
-    <div class="category-header">
-      {{color-picker selectedColor=category.color}}
+    <div class="category-header" {{bind-attr style="category.colorData.colorStyle"}}>
+      {{color-picker selectedColor=category.color updatedColorData="updateColor"}}
       <h4 class="ui header">{{click-to-edit-text value=category.name editing=category.editing}}</h4>
       <a href="#" {{bind-attr class=":add category.editing:hide"}} {{action "addTask"}}>+</a>
     </div>
     <ul class="category">
       {{#each task in category.sortedTasks itemController="task"}}
-        {{view "task"}}
+        {{view "task" data-id=task.id}}
       {{/each}}
     </ul>
   {{/view}}

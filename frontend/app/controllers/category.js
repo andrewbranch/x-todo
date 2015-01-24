@@ -33,6 +33,10 @@ export default EditableObjectController.extend({
       }
     },
 
+    updateColor: function (colorData) {
+      this.set('colorData', colorData);
+    },
+
     updateTaskIndexes: function (indexHash) {
       var updateTask = function (task) {
         if (task.get('index') !== indexHash[this]) {

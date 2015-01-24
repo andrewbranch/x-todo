@@ -57,6 +57,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: inherit;
 }
 
+.ui.checkbox label, .ui.checkbox .box:after, .ui.checkbox .box:before, .ui.checkbox label:after, .ui.checkbox label:before {
+  color: inherit;
+}
+
 .ui.segment {
   padding: 1.5rem;
 }
@@ -82,16 +86,41 @@ h1, h2, h3, h4, h5, h6 {
       left: -14px;
       white-space: normal;
       width: 103px;
-      li {
+      .item {
         display: inline-block;
         padding: .4em !important;
         text-align: center;
+        &.active {
+          background-color: $light-gray;
+        }
         .icon {
           margin: 0;
           padding: 0;
           font-size: 1.2em;
         }
       }
+    }
+  }
+}
+
+.ui.input.date-time-field {
+  input {
+    cursor: pointer;
+    display: inline-block;
+    background-color: transparent;
+    padding: 0;
+    border: none;
+    transition: none;
+    &.date { width: 4.7em; }
+    &.hour { width: .9em; text-align: right; }
+    &.minute { width: 1.1em; }
+    &.meridiem { width: 1.6em; }
+    &::selection {
+      background-color: transparent;
+      color: inherit;
+    }
+    &:focus {
+      background-color: fade-out($blue, .8);
     }
   }
 }
@@ -118,9 +147,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 ul.category {
+  margin-top: 0;
   list-style-type: none;
   padding-left: .5em;
   li {
+    border-bottom: 1px solid transparent;
     & > * {
       display: inline-block;
       vertical-align: top;
@@ -139,8 +170,10 @@ ul.category {
   }
   .header {
     margin: .5em .2em .5em 0;
+    color: inherit;
   }
   .add {
     font-size: 150%;
+    color: inherit;
   }
 }

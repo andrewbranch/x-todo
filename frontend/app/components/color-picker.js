@@ -1,24 +1,17 @@
+/* global tinycolor */
 import Ember from 'ember';
-var colors = [
-  '#b76868',
-  '#b76891',
-  '#b668b7',
-  '#8e68b7',
-  '#6869b7',
-  '#6891b7',
-  '#68b7b6',
-  '#68b78e',
-  '#68b78e',
-  '#69b768',
-  '#b7b668',
-  '#b78e68'
-].map(function (c) {
-  return {
-    color: c,
-    colorStyle: 'color: ' + c + ';',
-    backgroundColorStyle: 'background-color: ' + c + ';'
-  };
-});
+
+var colors = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(function (i) {
+      var color = tinycolor('#b76868').spin(-30 * i).toString(),
+          light = tinycolor('#b76868').spin(-30 * i).lighten(38).toString();
+      return {
+        color: color,
+        colorStyle: 'color: ' + color + ';',
+        backgroundColorStyle: 'background-color: ' + color + ';',
+        lightBackgroundColorStyle: 'background-color: ' + light + ';',
+        lightBorderColorStyle: 'border-color: ' + light + ';'
+      };
+    });
 
 export default Ember.Component.extend({
 
@@ -31,7 +24,7 @@ export default Ember.Component.extend({
   colorData: function () {
     return colors.map(function (c) {
       return {
-        selected: c === this.get('selectedColor'),
+        selected: c.color === this.get('selectedColor'),
         data: c
       };
     }.bind(this));
@@ -42,6 +35,10 @@ export default Ember.Component.extend({
       return c.color === this.get('selectedColor');
     }.bind(this));
   }.property('selectedColor'),
+
+  updateController: function () {
+    this.sendAction('updatedColorData', this.get('selectedColorData'));
+  }.observes('selectedColorData').on('init'),
 
   actions: {
     pickColor: function (color) {
