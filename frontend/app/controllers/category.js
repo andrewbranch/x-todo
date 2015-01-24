@@ -23,6 +23,10 @@ export default EditableObjectController.extend({
       });
     },
 
+    saveAutomatically: function () {
+      this._super();
+    }.observes('name', 'color'),
+
     delete: function () {
       if (!this.get('tasks').get('length') || confirm('All tasks in this category will be deleted.')) {
         this.get('model').destroyRecord();

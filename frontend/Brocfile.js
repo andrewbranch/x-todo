@@ -1,6 +1,8 @@
 /* global require, module */
 
 var EmberApp = require('ember-cli/lib/broccoli/ember-app');
+var pickFiles = require('broccoli-static-compiler');
+var mergeTrees = require('broccoli-merge-trees');
 
 var app = new EmberApp();
 
@@ -20,4 +22,10 @@ app.import('bower_components/jquery-ui/jquery-ui.min.js');
 app.import('bower_components/semantic-ui/dist/semantic.min.js');
 app.import('bower_components/semantic-ui/dist/semantic.min.css');
 
-module.exports = app.toTree();
+var fontTree = pickFiles('bower_components/semantic-ui/dist/themes/default/assets/fonts', {
+  srcDir: '/',
+  files: ['*'],
+  destDir: '/assets/themes/default/assets/fonts'
+});
+
+module.exports = mergeTrees([app.toTree(), fontTree]);

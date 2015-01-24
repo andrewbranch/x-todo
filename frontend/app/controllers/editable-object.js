@@ -13,7 +13,7 @@ export default Ember.ObjectController.extend({
   },
 
   save: function () {
-    if (!this.get('saving') && this.get('isDirty')) {
+    if (!this.get('saving') && this.get('isDirty') && this.get('isValid')) {
       var self = this;
       this.set('saving', true);
       this.get('model').save().then(function () {

@@ -1,0 +1,9 @@
+<button class="ui icon top left pointing dropdown small button" {{bind-attr style="selectedColorData.backgroundColorStyle"}}>
+  <ul class="menu">
+    {{#each color in colorData}}
+      <li {{bind-attr class="color.selected:active :item"}} {{action "pickColor" color.data}}>
+        <i class="circle icon" {{bind-attr style="color.data.colorStyle"}}></i>
+      </li>
+    {{/each}}
+  </ul>
+</button>

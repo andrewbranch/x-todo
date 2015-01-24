@@ -13,7 +13,8 @@ $green: #78c46a;
 $purple: #b668b7;
 $red: #ce0b24;
 $light-gray: #ecf0f1;
-$medium-screen: 768px;
+$gray: #aaa;
+$medium-screen: 500px;
 $font-stack: webly-sleek-ui, 'helvetica neue', helvetica, arial, sans-serif;
 
 .hide {
@@ -24,6 +25,8 @@ body {
   font: 400 100%/1.4 $font-stack;
   background-color: $light-gray;
   color: $dark-text;
+  padding-bottom: 60px; // For color dropdown
+  height: auto;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -37,6 +40,10 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 2em;
   font-weight: 200;
   padding: .8em 1em;
+
+  &:focus {
+    box-shadow: 0 0 2px $gray !important;
+  }
 
   &.blue {
     background-color: $blue;
@@ -54,14 +61,38 @@ h1, h2, h3, h4, h5, h6 {
   padding: 1.5rem;
 }
 
-$input-padding-vertical: .67861em;
 .click-to-edit-text {
   cursor: pointer;
   .static, .input input {
-    padding: $input-padding-vertical .5em;
+    padding: .7em .2em;
   }
   .input input {
     border: none;
+  }
+}
+
+.color-picker {
+  .ui.dropdown.button.top.left.pointing {
+    padding: .4em;
+    border-radius: .4em;
+    vertical-align: middle;
+    min-height: 0;
+
+    .menu {
+      left: -14px;
+      white-space: normal;
+      width: 103px;
+      li {
+        display: inline-block;
+        padding: .4em !important;
+        text-align: center;
+        .icon {
+          margin: 0;
+          padding: 0;
+          font-size: 1.2em;
+        }
+      }
+    }
   }
 }
 
@@ -103,11 +134,11 @@ ul.category {
 
 .category-header {
   border-bottom: 1px solid $light-gray;
-  .header, .add {
+  .header, .add, .color-picker {
     display: inline-block;
   }
   .header {
-    margin: .5em;
+    margin: .5em .2em .5em 0;
   }
   .add {
     font-size: 150%;
