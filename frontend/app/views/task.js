@@ -5,6 +5,8 @@ export default Ember.View.extend({
   templateName: 'task',
   tagName: 'li',
   attributeBindings: ['data-id'],
+  classNames: ['task'],
+  classNameBindings: ['completed'],
 
   didInsertElement: function () {
     this.$('.ui.checkbox').checkbox();

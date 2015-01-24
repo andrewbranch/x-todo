@@ -20,6 +20,13 @@ export default EditableObjectController.extend({
     return null
   }.property('dueDate'),
 
+  deleteEmptyTasks: function () {
+    var title = this.get('title');
+    if (!this.get('editing') && (!title || !title.length)) {
+      this.send('delete');
+    }
+  }.observes('editing'),
+
   actions: {
     addDueDate: function () {
       this.set('dueDate', moment().minute(0).add(1, 'days'));

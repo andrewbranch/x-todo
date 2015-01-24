@@ -182,6 +182,12 @@ ul.category {
   }
 }
 
+.task.completed {
+  .static {
+    text-decoration: line-through;
+  }
+}
+
 .due-date {
   font-size: 80%;
   .add {
