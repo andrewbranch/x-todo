@@ -17,12 +17,17 @@ export default EditableObjectController.extend({
     if (dueDate) {
       return dueDate.calendar();
     }
+    return null
   }.property('dueDate'),
 
   actions: {
     addDueDate: function () {
       this.set('dueDate', moment().minute(0).add(1, 'days'));
       this.set('editingDueDate', true);
+    },
+
+    removeDueDate: function () {
+      this.set('dueDate', null);
     },
 
     editDueDate: function () {

@@ -21,6 +21,10 @@ $font-stack: webly-sleek-ui, 'helvetica neue', helvetica, arial, sans-serif;
   display: none !important;
 }
 
+html {
+  font-size: 16px;
+}
+
 body {
   font: 400 100%/1.4 $font-stack;
   background-color: $light-gray;
@@ -68,7 +72,7 @@ h1, h2, h3, h4, h5, h6 {
 .click-to-edit-text {
   cursor: pointer;
   .static, .input input {
-    padding: .7em .2em;
+    padding: .6em .2em 0 0;
   }
   .input input {
     border: none;
@@ -175,5 +179,26 @@ ul.category {
   .add {
     font-size: 150%;
     color: inherit;
+  }
+}
+
+.due-date {
+  font-size: 80%;
+  .add {
+    opacity: 0;
+    // transition: .1s opacity linear;
+  }
+  .delete {
+    color: $gray;
+    &:hover {
+      color: $red;
+    }
+  }
+}
+
+.category > li:hover .due-date .add {
+  opacity: .5;
+  &:hover {
+    opacity: 1;
   }
 }

@@ -1,7 +1,9 @@
 /* global moment */
 
 import Ember from 'ember';
-var doneTimer;
+var doneTimer,
+    RETURN = 13,
+    ESCAPE = 27;
 
 export default Ember.Component.extend({
 
@@ -36,6 +38,12 @@ export default Ember.Component.extend({
 
   focusIn: function () {
     Ember.run.cancel(doneTimer);
+  },
+
+  keyUp: function (event) {
+    if ([RETURN, ESCAPE].contains(event.which)) {
+      this.sendAction('done');
+    }
   }
 
 });

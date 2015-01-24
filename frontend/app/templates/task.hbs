@@ -8,9 +8,10 @@
       {{#if task.editingDueDate}}
         {{date-time-field date=task.dueDate done="endEditingDueDate"}}
       {{else}}
-        <a href="#" {{action "editDueDate"}}>{{task.formattedDueDate}}</a>
+        <a href="#" {{bind-attr style="category.colorData.colorStyle"}} {{action "editDueDate"}}>{{task.formattedDueDate}}</a>
+        <a href="#" class="delete" {{action "removeDueDate"}}><i class="remove icon"></i></a>
       {{/if}}
     {{else}}
-      <a href="#" {{action "addDueDate"}}>Add due date</a>
+      <a href="#" class="add" {{bind-attr style="category.colorData.colorStyle"}} {{action "addDueDate"}}>Add due date</a>
     {{/if}}
 </div>
