@@ -48,6 +48,7 @@ export default EditableObjectController.extend({
 
     removeDueDate: function () {
       this.set('dueDate', null);
+      this.save();
     },
 
     editDueDate: function () {

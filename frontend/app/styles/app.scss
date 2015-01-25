@@ -13,7 +13,7 @@ $green: #78c46a;
 $purple: #b668b7;
 $red: #ce0b24;
 $light-gray: #ecf0f1;
-$gray: #aaa;
+$gray: #cccccc;
 $medium-screen: 500px;
 $font-stack: webly-sleek-ui, 'helvetica neue', helvetica, arial, sans-serif;
 
@@ -70,6 +70,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .click-to-edit-text {
+  width: 100%;
   cursor: pointer;
   .static, .input input {
     padding: .6em .2em 0 0;
@@ -155,9 +156,12 @@ ul.category {
   margin-top: 0;
   list-style-type: none;
   padding: 0;
+  min-height: 10px;
   li.task {
-    padding: 0 0 .5em .5em;
+    padding: 0 3.5em .5em 2.5em;
     margin-left: $overdue-border-width;
+    box-sizing: content-box;
+    position: relative;
     & > * {
       display: inline-block;
       vertical-align: top;
@@ -167,9 +171,24 @@ ul.category {
       display: none;
     }
 
+    & > .content {
+      &, .ui.input, .ui.input input {
+        width: 100%;
+      }
+    }
+
     .checkbox {
+      position: absolute;
       min-height: 0;
       top: .8em;
+      left: .5em;
+    }
+
+    .delete {
+      color: $gray;
+      &:hover {
+        color: $red;
+      }
     }
   }
 }
@@ -213,17 +232,34 @@ ul.category {
     opacity: 0;
     // transition: .1s opacity linear;
   }
-  .delete {
-    color: $gray;
-    &:hover {
-      color: $red;
-    }
-  }
 }
 
 .category > li:hover .due-date .add {
   opacity: .5;
   &:hover {
     opacity: 1;
+  }
+}
+
+.right.icons {
+  opacity: 0;
+  padding-top: .6em;
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: $gray;
+  &:hover {
+    opacity: 1 !important;
+  }
+  .handle {
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+    cursor: grab;
+  }
+}
+
+.task:hover, .task.editing {
+  .right.icons {
+    opacity: .5;
   }
 }

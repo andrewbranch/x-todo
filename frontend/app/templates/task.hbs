@@ -1,7 +1,7 @@
 <div class="ui checkbox" {{bind-attr style="category.colorData.colorStyle"}}>
   {{input type="checkbox" checked=task.completed}}
 </div>
-<div>
+<div class="content">
   {{click-to-edit-text value=task.title editing=task.editing}}
   <div class="due-date">
     {{#if task.dueDate}}
@@ -17,4 +17,9 @@
     {{else}}
       <a href="#" class="add" {{bind-attr style="category.colorData.colorStyle"}} {{action "addDueDate"}}>Add due date</a>
     {{/if}}
+  </div>
+</div>
+<div class="right icons">
+  <a href="#" class="delete" {{action "delete"}}><i class="remove icon"></i></a>
+  <i class="handle content icon"></i>
 </div>
