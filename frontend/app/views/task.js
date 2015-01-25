@@ -6,7 +6,7 @@ export default Ember.View.extend({
   tagName: 'li',
   attributeBindings: ['data-id'],
   classNames: ['task'],
-  classNameBindings: ['completed'],
+  classNameBindings: ['completed', 'overdue'],
 
   didInsertElement: function () {
     this.$('.ui.checkbox').checkbox();

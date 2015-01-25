@@ -150,19 +150,26 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+$overdue-border-width: 5px;
 ul.category {
   margin-top: 0;
   list-style-type: none;
-  padding-left: .5em;
-  li {
-    border-bottom: 1px solid transparent;
+  padding: 0;
+  li.task {
+    padding: 0 0 .5em .5em;
+    margin-left: $overdue-border-width;
     & > * {
       display: inline-block;
       vertical-align: top;
     }
 
+    .overdue {
+      display: none;
+    }
+
     .checkbox {
       min-height: 0;
+      top: .8em;
     }
   }
 }
@@ -185,6 +192,18 @@ ul.category {
 .task.completed {
   .static {
     text-decoration: line-through;
+  }
+}
+
+.category .task.overdue {
+  border-left: $overdue-border-width solid fade-out($red, .5);
+  margin-left: 0px;
+  .overdue {
+    display: inline-block;
+    color: fade-out($red, .5);
+  }
+  .not-overdue {
+    display: none;
   }
 }
 

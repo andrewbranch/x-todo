@@ -4,6 +4,19 @@ import EditableObjectController from './editable-object';
 
 export default EditableObjectController.extend({
 
+  needs: ['application'],
+
+  overdue: function () {
+    return !this.get('completed') && (this.get('dueDate') || Infinity) < this.get('controllers.application.currentTime');
+  }.property('dueDate', 'completed', 'controllers.application.currentTime'),
+
+  timeOverdue: function () {
+    var dueDate = this.get('dueDate');
+    if (dueDate) {
+      return dueDate.fromNow().replace(' ago', '');
+    }
+  }.property('dueDate', 'controllers.application.currentTime'),
+
   isValid: function () {
     return (this.get('title') || '').trim().length > 0;
   }.property('title'),
@@ -17,7 +30,7 @@ export default EditableObjectController.extend({
     if (dueDate) {
       return dueDate.calendar();
     }
-    return null
+    return null;
   }.property('dueDate'),
 
   deleteEmptyTasks: function () {
