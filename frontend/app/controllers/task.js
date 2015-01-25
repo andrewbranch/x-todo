@@ -43,6 +43,7 @@ export default EditableObjectController.extend({
 
     endEditingDueDate: function () {
       this.set('editingDueDate', false);
+      this.save();
     },
 
     delete: function () {

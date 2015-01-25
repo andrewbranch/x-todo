@@ -16,7 +16,10 @@ export default Ember.TextField.extend({
   },
 
   selectText: function () {
-    this.element.setSelectionRange(0, this.element.value.length);
+    // There's a chance the element has already been removed
+    if (this.element) {
+      this.element.setSelectionRange(0, this.element.value.length);
+    }
   }.on('focusIn', 'click'),
 
   cancelReselection: function () {

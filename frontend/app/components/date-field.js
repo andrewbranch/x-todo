@@ -15,7 +15,10 @@ export default Ember.TextField.extend({
   }.observes('date'),
 
   updateDate: function () {
-    var date = moment(new Date(this.get('value')));
+    var previousDate = this.get('date'),
+        date = moment(new Date(this.get('value')))
+          .hour(previousDate.hour())
+          .minute(previousDate.minute());
     if (date.isValid()) {
       this.set('date', date);
     } else {
