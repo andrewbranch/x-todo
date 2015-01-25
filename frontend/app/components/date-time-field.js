@@ -40,7 +40,7 @@ export default Ember.Component.extend({
     Ember.run.cancel(doneTimer);
   },
 
-  keyUp: function (event) {
+  keyDown: function (event) {
     if ([RETURN, ESCAPE].contains(event.which)) {
       this.sendAction('done');
     }

@@ -1,5 +1,9 @@
 import Ember from 'ember';
-var reselectTimer;
+var reselectTimer,
+    LEFT_ARROW = 37,
+    RIGHT_ARROW = 39,
+    RETURN = 13,
+    ESCAPE = 27;
 
 export default Ember.TextField.extend({
 
@@ -20,10 +24,10 @@ export default Ember.TextField.extend({
   }.on('focusOut'),
 
   keyDown: function (event) {
-    if (event.which === 37 || event.which === 39) {
+    if (event.which === LEFT_ARROW || event.which === RIGHT_ARROW) {
       return false;
     }
-    if (event.which <= 46) {
+    if (event.which === RETURN || event.which === ESCAPE || event.which <= 46) {
       return true;
     }
 
