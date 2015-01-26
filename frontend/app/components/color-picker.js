@@ -1,15 +1,13 @@
 /* global tinycolor */
+
 import Ember from 'ember';
 
 var colors = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11].map(function (i) {
-      var color = tinycolor('#b76868').spin(-30 * i).toString(),
-          light = tinycolor('#b76868').spin(-30 * i).lighten(38).toString();
+      var color = tinycolor('#b76868').spin(-30 * i).toString();
       return {
         color: color,
         colorStyle: 'color: ' + color + ';',
-        backgroundColorStyle: 'background-color: ' + color + ';',
-        lightBackgroundColorStyle: 'background-color: ' + light + ';',
-        lightBorderColorStyle: 'border-color: ' + light + ';'
+        backgroundColorStyle: 'background-color: ' + color + ';'
       };
     });
 

@@ -4,6 +4,9 @@ import Ember from 'ember';
 
 export default Ember.View.extend({
 
+  classNameBindings: ['editing'],
+  attributeBindings: ['style'],
+
   didInsertElement: function () {
     this.$('ul.category').sortable({
       axis: 'y',

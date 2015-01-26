@@ -229,6 +229,10 @@ ul.category {
   }
 }
 
+.editing .category-header .add {
+  display: none;
+}
+
 .task.completed {
   .static {
     text-decoration: line-through;
