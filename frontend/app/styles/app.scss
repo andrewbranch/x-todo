@@ -66,11 +66,12 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.ui.input, .ui.input input, ui.button {
+.ui.input, .ui.input input, ui.button, .ui.input input:focus {
   font-family: inherit;
   font-size: inherit;
   font-weight: inherit;
   line-height: inherit;
+  color: inherit;
 }
 
 .ui.checkbox label, .ui.checkbox label:hover, .ui.checkbox .box:after, .ui.checkbox .box:before, .ui.checkbox label:after, .ui.checkbox label:before {
@@ -89,6 +90,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .input input {
     border: none;
+    color: inherit;
   }
 }
 
@@ -286,7 +288,7 @@ ul.category {
   }
 }
 
-.task:hover, .task.editing, .category-header:hover, .category-heading.editing {
+.task:hover, .task.editing, .category-header:hover, .editing .category-header {
   .right.icons {
     opacity: .5;
   }
