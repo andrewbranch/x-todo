@@ -170,9 +170,12 @@ ul.category {
     .overdue {
       display: none;
     }
+    .not-overdue {
+      display: inline-block;
+    }
 
     & > .content {
-      &, .ui.input, .ui.input input {
+      &, .title .ui.input, .title .ui.input input {
         width: 100%;
       }
     }
@@ -185,6 +188,10 @@ ul.category {
     }
 
     .delete {
+      font-size: 1.8em;
+      position: relative;
+      top: .1em;
+      line-height: 0;
       color: $gray;
       &:hover {
         color: $red;

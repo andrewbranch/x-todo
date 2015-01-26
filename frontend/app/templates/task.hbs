@@ -2,7 +2,7 @@
   {{input type="checkbox" checked=task.completed}}
 </div>
 <div class="content">
-  {{click-to-edit-text value=task.title editing=task.editing}}
+  {{click-to-edit-text class="title" value=task.title editing=task.editing}}
   <div class="due-date">
     {{#if task.dueDate}}
       {{#if task.editingDueDate}}
@@ -12,7 +12,7 @@
         <div class="not-overdue">
           <a href="#" {{bind-attr style="category.colorData.colorStyle"}} {{action "editDueDate"}}>{{task.formattedDueDate}}</a>
         </div>
-        <a href="#" class="delete" {{action "removeDueDate"}}><i class="remove icon"></i></a>
+        <a href="#" class="delete" {{action "removeDueDate"}}>&times;</a>
       {{/if}}
     {{else}}
       <a href="#" class="add" {{bind-attr style="category.colorData.colorStyle"}} {{action "addDueDate"}}>Add due date</a>
@@ -20,6 +20,6 @@
   </div>
 </div>
 <div class="right icons">
-  <a href="#" class="delete" {{action "delete"}}><i class="remove icon"></i></a>
+  <a href="#" class="delete" {{action "delete"}}>&times;</a>
   <i class="handle content icon"></i>
 </div>
