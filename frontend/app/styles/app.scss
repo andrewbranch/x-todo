@@ -258,6 +258,9 @@ ul.category {
   &:hover {
     opacity: 1 !important;
   }
+  .delete {
+    font-weight: 600;
+  }
   .handle {
     cursor: -webkit-grab;
     cursor: -moz-grab;
