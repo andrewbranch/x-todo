@@ -1,11 +1,17 @@
-<!-- <button class="ui blue button" type="button" {{action "addCategory"}}>New Category</button> -->
+<a href="#" id="remove-completed" {{bind-attr class="anyCompleted::hide"}} {{action "removeCompletedTasks"}}>
+  <i class="icon check"></i>
+  Remove completed
+</a>
 
-{{#each category in model itemController="category"}}
+{{#each category in controller itemController="category"}}
   {{#view "category"}}
     <div class="category-header" {{bind-attr style="category.colorData.colorStyle"}}>
       {{color-picker selectedColor=category.color updatedColorData="updateColor"}}
       <h4 class="ui header">{{click-to-edit-text value=category.name editing=category.editing}}</h4>
       <a href="#" {{bind-attr class=":add category.editing:hide"}} {{action "addTask"}}>+</a>
+      <div class="right icons">
+        <a href="#" class="delete" {{action "delete"}}>&times;</a>
+      </div>
     </div>
     <ul class="category">
       {{#each task in category.sortedTasks itemController="task"}}
@@ -14,3 +20,5 @@
     </ul>
   {{/view}}
 {{/each}}
+
+<div id="add-category" class="ui button" aria-role="button" {{action "addCategory"}}>Add Category</div>

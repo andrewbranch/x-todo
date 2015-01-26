@@ -3,6 +3,8 @@ import EditableObjectController from './editable-object';
 
 export default EditableObjectController.extend({
 
+  needs: ['categories'],
+
   isValid: function () {
     return (this.get('name') || '').trim().length > 0;
   }.property('name'),
@@ -13,6 +15,10 @@ export default EditableObjectController.extend({
       content: this.get('tasks')
     });
   }.property('tasks'),
+
+  notifyCompletedTasks: function () {
+    this.get('controllers.categories').notifyPropertyChange('completedTasks');
+  }.observes('tasks.@each.completed'),
 
   actions: {
 

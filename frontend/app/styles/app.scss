@@ -11,7 +11,7 @@ $medium-text: #4e5758;
 $blue: #3a9bdc;
 $green: #78c46a;
 $purple: #b668b7;
-$red: #ce0b24;
+$red: fade-out(#ce0b24, .5);
 $light-gray: #ecf0f1;
 $gray: #cccccc;
 $medium-screen: 500px;
@@ -19,6 +19,17 @@ $font-stack: webly-sleek-ui, 'helvetica neue', helvetica, arial, sans-serif;
 
 .hide {
   display: none !important;
+}
+
+.delete {
+  font-size: 1.8em;
+  position: relative;
+  top: .1em;
+  line-height: 0;
+  color: $gray;
+  &:hover {
+    color: $red;
+  }
 }
 
 html {
@@ -29,6 +40,7 @@ body {
   font: 400 100%/1.4 $font-stack;
   background-color: $light-gray;
   color: $dark-text;
+  padding-top: 41px;    // For fixed menu
   padding-bottom: 60px; // For color dropdown
   height: auto;
 }
@@ -61,7 +73,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: inherit;
 }
 
-.ui.checkbox label, .ui.checkbox .box:after, .ui.checkbox .box:before, .ui.checkbox label:after, .ui.checkbox label:before {
+.ui.checkbox label, .ui.checkbox label:hover, .ui.checkbox .box:after, .ui.checkbox .box:before, .ui.checkbox label:after, .ui.checkbox label:before {
   color: inherit;
 }
 
@@ -151,6 +163,15 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+#menu {
+  background-color: $dark-text;
+  color: white;
+  .container {
+    max-width: $medium-screen;
+    margin: auto;
+  }
+}
+
 $overdue-border-width: 5px;
 ul.category {
   margin-top: 0;
@@ -186,22 +207,12 @@ ul.category {
       top: .8em;
       left: .5em;
     }
-
-    .delete {
-      font-size: 1.8em;
-      position: relative;
-      top: .1em;
-      line-height: 0;
-      color: $gray;
-      &:hover {
-        color: $red;
-      }
-    }
   }
 }
 
 .category-header {
   border-bottom: 1px solid $light-gray;
+  position: relative;
   .header, .add, .color-picker {
     display: inline-block;
   }
@@ -213,6 +224,9 @@ ul.category {
     font-size: 120%;
     color: inherit;
   }
+  .delete {
+    top: .4em;
+  }
 }
 
 .task.completed {
@@ -222,11 +236,11 @@ ul.category {
 }
 
 .category .task.overdue {
-  border-left: $overdue-border-width solid fade-out($red, .5);
+  border-left: $overdue-border-width solid $red;
   margin-left: 0px;
   .overdue {
     display: inline-block;
-    color: fade-out($red, .5);
+    color: $red;
   }
   .not-overdue {
     display: none;
@@ -268,8 +282,33 @@ ul.category {
   }
 }
 
-.task:hover, .task.editing {
+.task:hover, .task.editing, .category-header:hover, .category-heading.editing {
   .right.icons {
     opacity: .5;
+  }
+}
+
+#remove-completed {
+  color: $gray;
+  float: right;
+  font-size: .8em;
+  &:hover {
+    color: $red;
+  }
+}
+
+#add-category {
+  display: block;
+  margin: 0 -1.5rem;
+  padding: 2em;
+  background-color: white;
+  color: $gray;
+  &:hover {
+    background-color: fade-out($light-gray, .5);
+    color: $dark-text;
+  }
+  &:last-child {
+    border-radius: 0 0 10px 10px;
+    margin-bottom: -1.5rem;
   }
 }
