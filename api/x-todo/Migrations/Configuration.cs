@@ -13,13 +13,6 @@ namespace x_todo.Migrations {
 
         protected override void Seed(x_todo.Models.XTodoContext context) {
             //  This method will be called after migrating to the latest version.
-
-            var initialCategory = new Category("Work") { Index = 0 };
-            context.Categories.AddOrUpdate(c => c.Name, initialCategory);
-
-            context.Tasks.AddOrUpdate(t => t.Title,
-                new Task(initialCategory.Id, "Get hired") { Index = 0 }
-            );
         }
     }
 }

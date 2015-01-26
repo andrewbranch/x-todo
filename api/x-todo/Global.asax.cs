@@ -10,7 +10,7 @@ using System.Web.Routing;
 using x_todo.Models;
 
 namespace x_todo {
-    // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
+    // Note: For instructions on enabling IIS6 or IIS7 classic mode,
     // visit http://go.microsoft.com/?LinkId=9394801
 
     public class WebApiApplication : System.Web.HttpApplication {
@@ -21,7 +21,6 @@ namespace x_todo {
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<XTodoContext, Migrations.Configuration>());
         }
     }
 }

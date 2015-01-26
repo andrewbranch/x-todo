@@ -206,6 +206,10 @@
     <Compile Include="Migrations\201501221615339_Flesh-Out-Models.Designer.cs">
       <DependentUpon>201501221615339_Flesh-Out-Models.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201501262045118_Seed.cs" />
+    <Compile Include="Migrations\201501262045118_Seed.Designer.cs">
+      <DependentUpon>201501262045118_Seed.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\IEntity.cs" />
@@ -247,6 +251,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501221615339_Flesh-Out-Models.resx">
       <DependentUpon>201501221615339_Flesh-Out-Models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501262045118_Seed.resx">
+      <DependentUpon>201501262045118_Seed.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
