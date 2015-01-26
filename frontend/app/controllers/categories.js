@@ -22,6 +22,18 @@ export default Ember.ArrayController.extend(Ember.SortableMixin, {
     });
   }.property('@each.color'),
 
+  updateIndexes: function () {
+    var categories = this.get('arrangedContent');
+    this.beginPropertyChanges();
+    for (var i = 0; i < categories.length; i++) {
+      if (categories[i].get('index') !== i) {
+        categories[i].set('index', i);
+        categories[i].save();
+      }
+    }
+    this.endPropertyChanges();
+  }.observes('[]'),
+
   actions: {
 
     addCategory: function () {
