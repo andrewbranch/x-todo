@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using x_todo.Models;
 
 namespace x_todo {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -18,6 +20,8 @@ namespace x_todo {
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<XTodoContext, Migrations.Configuration>());
         }
     }
 }

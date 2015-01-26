@@ -6,10 +6,8 @@ module.exports = function (grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     nuget_install: {
-      file: {
-        './api/x-todo.sln'
-      }
-    }
+      file: './api/x-todo.sln'
+    },
 
     msbuild: {
       src: ['./api/x-todo.sln'],
@@ -34,7 +32,8 @@ module.exports = function (grunt) {
     iisexpress: {
       server: {
         options: {
-          site: 'x_todo',
+          path: require('path').resolve('./api/x-todo'),
+          port: '50993',
           keepalive: true,
           verbose: true
         },
@@ -49,7 +48,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nuget-install');
 
-  grunt.registerTask('install', ['nuget-install']);
+  grunt.registerTask('install', ['nuget_install']);
   grunt.registerTask('build', ['msbuild', 'shell:emberbuild']);
   grunt.registerTask('default', ['install', 'msbuild', 'server']);
 
