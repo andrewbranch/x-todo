@@ -5,6 +5,12 @@ module.exports = function (grunt) {
 
     pkg: grunt.file.readJSON('package.json'),
 
+    nuget_install: {
+      file: {
+        './api/x-todo.sln'
+      }
+    }
+
     msbuild: {
       src: ['./api/x-todo.sln'],
       options: {
@@ -15,13 +21,11 @@ module.exports = function (grunt) {
     },
 
     shell: {
-      apiHost: 'http://localhost:50993',
-      emberserver: {
-        command: 'ember server --proxy <%= apiHost %>',
+      emberbuild: {
+        command: 'ember build',
         options: {
           execOptions: {
-            cwd: 'frontend',
-            killSignal: 'SIGINT'
+            cwd: 'frontend'
           }
         }
       }
@@ -33,25 +37,44 @@ module.exports = function (grunt) {
           site: 'x_todo',
           keepalive: true,
           verbose: true
-        }
-      }
-    },
-
-    concurrent: {
-      server: ['iisexpress', 'shell:emberserver'],
-      options: {
-        logConcurrentOutput: true
+        },
       }
     }
   });
 
+
+
   grunt.loadNpmTasks('grunt-msbuild');
-  grunt.loadNpmTasks('grunt-concurrent');
   grunt.loadNpmTasks('grunt-iisexpress');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-nuget-install');
 
-  grunt.registerTask('build', ['msbuild']);
-  grunt.registerTask('server', ['concurrent:server']);
-  grunt.registerTask('default', ['build', 'server']);
+  grunt.registerTask('install', ['nuget-install']);
+  grunt.registerTask('build', ['msbuild', 'shell:emberbuild']);
+  grunt.registerTask('default', ['install', 'msbuild', 'server']);
+
+  var emberServerProcess,
+      emberServerDone;
+  grunt.registerTask('server', function () {
+    var exec = require('child_process').exec,
+        emberServerProcess = exec('cd frontend && ember server', function (error, stdout, stderr) {
+          grunt.log.writeln(stdout);
+          grunt.log.error(stderr);
+          if (!error) {
+            grunt.warn(error);
+          }
+        });
+      grunt.log.write(emberServerProcess);
+      emberServerProcess.stdout.on('data', function (data) {
+        grunt.log.writeln(data.toString());
+      });
+
+      emberServerProcess.stderr.on('data', function (data) {
+        grunt.warn(data.toString());
+      });
+
+      grunt.task.run('iisexpress');
+
+  });
 
 };
