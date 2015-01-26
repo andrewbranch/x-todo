@@ -8,7 +8,7 @@ var reselectTimer,
 export default Ember.TextField.extend({
 
   classNames: ['replacing-field'],
-  interval: 1500,
+  interval: 1000,
   validationPattern: '.*',
 
   willReplace: function () {
