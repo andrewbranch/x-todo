@@ -78,6 +78,11 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
+.ui.checkbox label:after {
+  top: 1.5px;
+  left: 1.5px;
+}
+
 .ui.segment {
   padding: 1.5rem;
 }
@@ -190,6 +195,10 @@ ul.category {
       vertical-align: top;
     }
 
+    .title {
+      color: $dark-text;
+    }
+
     .overdue {
       display: none;
     }
@@ -298,6 +307,8 @@ ul.category {
   color: $gray;
   float: right;
   font-size: .8em;
+  z-index: 1;
+  position: relative;
   &:hover {
     color: $red;
   }

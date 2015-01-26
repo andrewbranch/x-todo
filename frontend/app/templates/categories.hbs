@@ -15,7 +15,7 @@
     </div>
     <ul class="category">
       {{#each task in category.sortedTasks itemController="task"}}
-        {{view "task" data-id=task.id completed=task.completed overdue=task.overdue}}
+        {{view "task" data-id=task.id completed=task.completed overdue=task.overdue editing=task.editing}}
       {{/each}}
     </ul>
   {{/view}}
