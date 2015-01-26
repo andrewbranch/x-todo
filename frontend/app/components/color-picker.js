@@ -17,6 +17,19 @@ export default Ember.Component.extend({
 
   didInsertElement: function () {
     this.$('.ui.dropdown').dropdown();
+    if (!this.get('selectedColor')) {
+      this.assignDefaultColor();
+    }
+  },
+
+  assignDefaultColor: function () {
+    var options = colors.filter(function (c) {
+      return !(this.get('defaultColorExcludes') || []).contains(c.color);
+    }.bind(this));
+    if (!options.length) {
+      options = colors;
+    }
+    this.set('selectedColor', options[Math.floor(Math.random() * (options.length - 1))].color);
   },
 
   colorData: function () {

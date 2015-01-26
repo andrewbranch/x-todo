@@ -16,6 +16,12 @@ export default Ember.ArrayController.extend(Ember.SortableMixin, {
     }));
   }.property(),
 
+  usedColors: function () {
+    return this.get('model').map(function (c) {
+      return c.get('color');
+    });
+  }.property('@each.color'),
+
   actions: {
 
     addCategory: function () {

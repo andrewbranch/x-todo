@@ -6,7 +6,7 @@
 {{#each category in controller itemController="category"}}
   {{#view "category" editing=category.editing style=category.colorData.colorStyle}}
     <div class="category-header">
-      {{color-picker selectedColor=category.color updatedColorData="updateColor"}}
+      {{color-picker selectedColor=category.color updatedColorData="updateColor" defaultColorExcludes=usedColors}}
       <h4 class="ui header">{{click-to-edit-text value=category.name editing=category.editing}}</h4>
       <a href="#" class="add" {{action "addTask"}}>+</a>
       <div class="right icons">

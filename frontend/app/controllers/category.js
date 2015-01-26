@@ -23,7 +23,7 @@ export default EditableObjectController.extend({
 
   setPreviousName: function () {
     if (this.get('editing')) {
-      previousName = this.get('name')
+      previousName = this.get('name');
     }
   }.observes('editing'),
 
