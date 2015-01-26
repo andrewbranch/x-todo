@@ -18,5 +18,8 @@
     "tinycolor": "~1.1.2",
     "moment": "~2.9.0",
     "pikaday": "1.2.0"
+  },
+  "resolutions": {
+    "ember": "1.10.0-beta.4"
   }
 }

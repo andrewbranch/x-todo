@@ -27,7 +27,9 @@ export default Ember.ArrayController.extend(Ember.SortableMixin, {
 
     removeCompletedTasks: function () {
       this.get('completedTasks').forEach(function (t) {
-        t.destroyRecord();
+        if (!~t.get('currentState.stateName').indexOf('inFlight')) {
+          t.destroyRecord();
+        }
       });
     }
   }

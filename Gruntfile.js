@@ -37,6 +37,7 @@ module.exports = function (grunt) {
           keepalive: true,
           verbose: true
         },
+        killOn: 'exit'
       }
     }
   });
@@ -52,10 +53,9 @@ module.exports = function (grunt) {
   grunt.registerTask('build', ['msbuild', 'shell:emberbuild']);
   grunt.registerTask('default', ['install', 'msbuild', 'server']);
 
-  var emberServerProcess,
-      emberServerDone;
   grunt.registerTask('server', function () {
     var exec = require('child_process').exec,
+        kill = require('tree-kill'),
         emberServerProcess = exec('cd frontend && ember server', function (error, stdout, stderr) {
           grunt.log.writeln(stdout);
           grunt.log.error(stderr);
@@ -63,13 +63,19 @@ module.exports = function (grunt) {
             grunt.warn(error);
           }
         });
-      grunt.log.write(emberServerProcess);
+
       emberServerProcess.stdout.on('data', function (data) {
         grunt.log.writeln(data.toString());
       });
 
       emberServerProcess.stderr.on('data', function (data) {
+        kill(emberServerProcess.pid, 'SIGKILL');
         grunt.warn(data.toString());
+      });
+
+      process.on('SIGINT', function () {
+        grunt.log.writeln('Stopping Ember server');
+        kill(emberServerProcess.pid, 'SIGKILL');
       });
 
       grunt.task.run('iisexpress');

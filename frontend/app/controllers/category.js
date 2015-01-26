@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import EditableObjectController from './editable-object';
+var previousName;
 
 export default EditableObjectController.extend({
 
@@ -19,6 +20,22 @@ export default EditableObjectController.extend({
   notifyCompletedTasks: function () {
     this.get('controllers.categories').notifyPropertyChange('completedTasks');
   }.observes('tasks.@each.completed'),
+
+  setPreviousName: function () {
+    if (this.get('editing')) {
+      previousName = this.get('name')
+    }
+  }.observes('editing'),
+
+  undoDeletingNameOrDeleteEmpty: function () {
+    if (!this.get('editing') && !this.get('name.length')) {
+      if (this.get('tasks.length')) {
+        this.set('name', previousName);
+      } else {
+        this.send('delete');
+      }
+    }
+  }.observes('editing'),
 
   actions: {
 
