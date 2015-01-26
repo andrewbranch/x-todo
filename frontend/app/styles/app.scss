@@ -33,14 +33,13 @@ $font-stack: webly-sleek-ui, 'helvetica neue', helvetica, arial, sans-serif;
 }
 
 html {
-  font-size: 16px;
+  font-size: 18px;
 }
 
 body {
   font: 400 100%/1.4 $font-stack;
   background-color: $light-gray;
   color: $dark-text;
-  padding-top: 41px;    // For fixed menu
   padding-bottom: 60px; // For color dropdown
   height: auto;
 }
@@ -79,8 +78,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .ui.checkbox label:after {
-  top: 1.5px;
-  left: 1.5px;
+  top: .05em;
+  left: .05em;
+}
+
+.ui.checkbox label:before, .ui.checkbox label:after {
+  line-height: 1;
+  width: 1em;
+  height: 1em;
 }
 
 .ui.segment {
@@ -252,7 +257,7 @@ ul.category {
 
 .category .task.overdue {
   border-left: $overdue-border-width solid $red;
-  margin-left: 0px;
+  margin-left: 0;
   .overdue {
     display: inline-block;
     color: $red;
@@ -266,11 +271,13 @@ ul.category {
   font-size: 80%;
   .add {
     opacity: 0;
-    // transition: .1s opacity linear;
+  }
+  .delete {
+    top: .14em;
   }
 }
 
-.category > li:hover .due-date .add {
+.category .task:hover .due-date .add, .task.editing .due-date .add {
   opacity: .5;
   &:hover {
     opacity: 1;
