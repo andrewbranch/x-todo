@@ -8,7 +8,8 @@
     "url": "https://github.com/andrewbranch/x-todo.git"
   },
   "scripts": {
-    "preinstall": "cd ./frontend && npm install && bower install && cd ../ && grunt install",
+    "preinstall": "cd ./frontend && npm install",
+    "postinstall": "bower install && cd ../ && grunt install"
     "build": "grunt build",
     "start": "grunt server"
   },
