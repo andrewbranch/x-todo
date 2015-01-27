@@ -4,7 +4,7 @@ Sample to-do web app for Xamarin interview process
 ## Overview
 X-Todo is comprised of two semi-independent applications: a REST API built with ASP.NET MVC, and a frontend single-page application built with Ember. This makes for good separation of concerns because each app can be managed, implemented, updated, and deployed potentially without impact on the other.
 
-## Building & Running
+## Building and Running
 Installing, building, and running the app is automated and doesn’t require opening Visual Studio. You do need a couple things already in place, though:
 
 - Windows (I used 10 under VMWare)
