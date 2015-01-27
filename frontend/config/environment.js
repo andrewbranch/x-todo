@@ -21,7 +21,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'static') {
-    ENV.baseURL = '/x-todo/';
+    ENV.baseURL = '/x-todo';
     ENV.locationType = 'hash';
   }
 
