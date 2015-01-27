@@ -36,7 +36,14 @@ export default Ember.TextField.extend({
 
     var key = String.fromCharCode(event.which),
         optionsString = this.get('autocompleteOptions'),
-        options = optionsString ? optionsString.split(',') : [];
+        options = optionsString ? optionsString.split(',') : [],
+        advanceCharactersString = this.get('advanceCharacters'),
+        advanceCharacters = advanceCharactersString ? advanceCharactersString.split(',') : [];
+
+    if (advanceCharacters.contains(key)) {
+      this.sendAction('advance');
+      return false;
+    }
 
     if (options.length && this.willReplace()) {
       var option = options.find(function (o) {

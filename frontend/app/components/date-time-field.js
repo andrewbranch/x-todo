@@ -1,7 +1,10 @@
+/* global $ */
+
 import Ember from 'ember';
 var doneTimer,
     RETURN = 13,
-    ESCAPE = 27;
+    ESCAPE = 27,
+    TAB = 9;
 
 export default Ember.Component.extend({
 
@@ -41,6 +44,12 @@ export default Ember.Component.extend({
   keyDown: function (event) {
     if ([RETURN, ESCAPE].contains(event.which)) {
       this.sendAction('done');
+    }
+  },
+
+  actions: {
+    advance: function () {
+      $.event.trigger({ type : 'keypress', which : TAB });
     }
   }
 
