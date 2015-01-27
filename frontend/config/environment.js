@@ -20,6 +20,10 @@ module.exports = function(environment) {
     }
   };
 
+  if (environment === 'static') {
+    ENV.baseURL = 'http://andrewbranch.github.io/x-todo'
+  }
+
   if (environment === 'development') {
     // ENV.APP.LOG_RESOLVER = true;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
