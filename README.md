@@ -22,7 +22,7 @@ npm run-script build
 npm start
 ```
 
-and open a browser to http://localhost:4200.
+and open a browser to [http://localhost:4200](http://localhost:4200).
 
 Individual tasks can be run with Grunt and Ember CLI if needed:
 
