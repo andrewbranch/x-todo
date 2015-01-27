@@ -12,6 +12,8 @@ Installing, building, and running the app is automated and doesn’t require ope
 - A LocalDb instance named `v11.0` (`SqlLocalDB info` to check, `SqlLocalDB c v11.0` to create)
 - Node.js or equivalent (I used Node v0.10.35) (Some dependencies have issues with beta versions)
 - Grunt CLI (`npm install -g grunt-cli`)
+- Bower (`npm install -g bower`)
+- Ember CLI (`npm install -g ember-cli`)
 
 If you have all those, just do
 
@@ -32,6 +34,8 @@ grunt msbuild    # Builds Web API project
 grunt iisexpress # Serves the API at http://localhost:50993/api
 ember server     # Builds and serves the frontend at http://localhost:4200
 ```
+
+It appears the ember server does not always shut down properly. If it tells you port 4200 is already in use, kill Node in the Task Manager and try again.
 
 ## Features
 X-Todo is simple, but a lot of detail went into the little things, so I’d like to point a few of them out.
