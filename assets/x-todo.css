@@ -153,12 +153,14 @@ h1, h1.ui.header, h2, h2.ui.header, h3, h3.ui.header, h4, h4.ui.header, h5, h5.u
   max-width: 500px;
   border-width: 0;
   border-radius: 0;
-  min-height: 15em; }
+  min-height: 15em;
+  padding: 1.5rem 1rem; }
   @media (min-width: 540px) {
     #container {
       margin: 20px auto;
       border-radius: 10px;
-      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); } }
+      box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+      padding: 1.5rem 1.5rem; } }
   #container h1 {
     text-align: center;
     margin: -1.5rem -1.5rem .5em -1.5rem;
@@ -182,10 +184,13 @@ ul.category {
   padding: 0;
   min-height: 10px; }
   ul.category li.task {
-    padding: 0 3.5em .5em 2.5em;
+    padding: 0 1.2em .5em 2em;
     margin-left: 5px;
     box-sizing: content-box;
     position: relative; }
+    @media (min-width: 540px) {
+      ul.category li.task {
+        padding: 0 3.5em .5em 2.5em; } }
     ul.category li.task > * {
       display: inline-block;
       vertical-align: top; }
@@ -258,7 +263,11 @@ ul.category {
   .right.icons .handle {
     cursor: -webkit-grab;
     cursor: -moz-grab;
-    cursor: grab; }
+    cursor: grab;
+    display: none; }
+    @media (min-width: 540px) {
+      .right.icons .handle {
+        display: inline; } }
 
 .task:hover .right.icons, .task.editing .right.icons, .category-header:hover .right.icons, .editing .category-header .right.icons {
   opacity: .5; }
