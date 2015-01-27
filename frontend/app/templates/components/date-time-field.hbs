@@ -1,3 +1,7 @@
-{{date-field class="date" date=date}}
+{{#if isMobile}}
+  {{native-date type="date" dateBinding="date"}}
+{{else}}
+  {{date-field class="date" date=date}}
+{{/if}}
 {{replacing-field class="hour" value=formattedHour pattern="[0-9]*" advance="advance" advanceCharacters="SHIFTº" validationPattern="^[1-9]$|^1[0-2]$"}}:{{replacing-field class="minute" value=minute advance="advance" advanceCharacters=" " pattern="[0-9]*" validationPattern="^[0-5]$|^[0-5][0-9]$"}}
 {{replacing-field class="meridiem" value=meridiem autocompleteOptions="AM,PM"}}
