@@ -26,7 +26,7 @@ frontend/clean_ember-cli.js
 ## ASP.NET MVC
 
 # Database
-api/*/App_Data
+api/*/App_Data/[^.]*
 
 # Build Folders (you can keep bin if you'd like, to store dlls and pdbs)
 api/*/[Bb]in/
