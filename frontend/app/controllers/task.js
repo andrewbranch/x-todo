@@ -1,10 +1,20 @@
 /* global moment */
 
 import EditableObjectController from './editable-object';
+var staticEnvironment = window.XTodo.environment === 'static';
 
 export default EditableObjectController.extend({
 
   needs: ['application'],
+
+  dueDate: staticEnvironment ?
+    function () {
+      var dueDate = this.get('model.dueDate');
+      if (dueDate) {
+        return moment(dueDate);
+      }
+      return null;
+    }.property('model.dueDate') : undefined,
 
   overdue: function () {
     return !this.get('completed') && (this.get('dueDate') || Infinity) < this.get('controllers.application.currentTime');
