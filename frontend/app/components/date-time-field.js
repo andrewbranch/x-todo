@@ -1,8 +1,7 @@
 import Ember from 'ember';
 var doneTimer,
     RETURN = 13,
-    ESCAPE = 27,
-    TAB = 9;
+    ESCAPE = 27;
 
 export default Ember.Component.extend({
 
