@@ -12,7 +12,6 @@ Installing, building, and running the app is automated and doesn’t require ope
 - A LocalDb instance named `v11.0` (`SqlLocalDB info` to check, `SqlLocalDB c v11.0` to create)
 - Node.js or equivalent (I used Node v0.10.35) (Some dependencies have issues with beta versions)
 - Grunt CLI (`npm install -g grunt-cli`)
-- Bower (`npm install -g bower`)
 
 If you have all those, just do
 

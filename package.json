@@ -9,7 +9,7 @@
   },
   "scripts": {
     "preinstall": "cd ./frontend && npm install",
-    "postinstall": "bower install && cd ../ && grunt install"
+    "postinstall": "cd ./frontend && bower install && cd ../ && grunt install",
     "build": "grunt build",
     "start": "grunt server"
   },
