@@ -3,13 +3,15 @@ var reselectTimer,
     LEFT_ARROW = 37,
     RIGHT_ARROW = 39,
     RETURN = 13,
-    ESCAPE = 27;
+    ESCAPE = 27,
+    SPACE = 32;
 
 export default Ember.TextField.extend({
 
   classNames: ['replacing-field'],
   interval: 1000,
   validationPattern: '.*',
+
 
   willReplace: function () {
     return Math.abs(this.element.selectionEnd - this.element.selectionStart) === this.get('value.length');
@@ -30,7 +32,7 @@ export default Ember.TextField.extend({
     if (event.which === LEFT_ARROW || event.which === RIGHT_ARROW) {
       return false;
     }
-    if (event.which === RETURN || event.which === ESCAPE || event.which <= 46) {
+    if (event.which === RETURN || event.which === ESCAPE || (event.which <= 46 && event.which !== SPACE)) {
       return true;
     }
 
@@ -38,9 +40,12 @@ export default Ember.TextField.extend({
         optionsString = this.get('autocompleteOptions'),
         options = optionsString ? optionsString.split(',') : [],
         advanceCharactersString = this.get('advanceCharacters'),
-        advanceCharacters = advanceCharactersString ? advanceCharactersString.split(',') : [];
+        advanceCharacters = advanceCharactersString ? advanceCharactersString.split(',') : [],
+        advanceShiftCharacters = advanceCharacters.map(function (c) {
+          return !!~c.indexOf('SHIFT') ? c.replace('SHIFT', '') : undefined;
+        });
 
-    if (advanceCharacters.contains(key)) {
+    if (advanceCharacters.contains(key) || (event.shiftKey && advanceShiftCharacters.contains(key))) {
       this.sendAction('advance');
       return false;
     }

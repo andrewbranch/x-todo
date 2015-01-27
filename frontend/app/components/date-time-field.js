@@ -1,5 +1,3 @@
-/* global $ */
-
 import Ember from 'ember';
 var doneTimer,
     RETURN = 13,
@@ -49,7 +47,8 @@ export default Ember.Component.extend({
 
   actions: {
     advance: function () {
-      $.event.trigger({ type : 'keypress', which : TAB });
+      var inputs = this.$('input');
+      inputs.eq(inputs.index(inputs.filter(':focus')) + 1).focus();
     }
   }
 
