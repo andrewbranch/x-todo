@@ -44,7 +44,7 @@ X-Todo is simple, but a lot of detail went into the little things, so I’d like
 <dt>Drag & Drop Reordering</dt>
 <dd>Tasks can be rearranged by dragging and dropping (handy for making visual priority cues). Tasks can also be dragged into a different category.</dd>
 <dt>Customizable Colors</dt>
-<dd>Categories can be assigned a color, because it’s good for [pattern recognition](http://en.wikipedia.org/wiki/Principles_of_grouping) and it’s fun.
+<dd>Categories can be assigned a color, because it’s good for <a href="http://en.wikipedia.org/wiki/Principles_of_grouping">pattern recognition</a> and it’s fun.
 <dt>Custom Date/Time UX</dt>
 <dd>Designing the UX and building the UI for due dates comprised upwards of 15% of the total time I spent on the project. Personally, the only time I’m ever not annoyed while entering a time of day into a computer is when I’m doing so in OS X’s Calendar app. So, I aimed to recreate that experience for web, and I believe I did pretty well. Like everything else, due dates can be edited in-line, but when you’re not editing, they change to a more readable format, e.g. “Tomorrow at 3:00 PM” or “2 days overdue.” (N.B. I did not design the day picker itself.)</dd>
 </dl>
